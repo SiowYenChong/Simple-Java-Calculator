@@ -7,7 +7,7 @@ pipeline {
         SONAR_PROJECT_NAME = 'Simple-Java-Calculator'
         SONAR_HOST_URL = 'http://localhost:9000/'
         SONAR_LOGIN = 'squ_025b7877e89fb15e39f368c2b9eaad3bb9722efa'
-        scannerHome = 'C:/sonar-scanner-5.0.1.3006-windows/bin'
+        scannerHome = 'C:/sonar-scanner-5.0.1.3006-windows'
     }
     stages {
         stage('Build with Ant') {
@@ -34,11 +34,11 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
-		    steps {
-		        script {
-		           sh "${env.scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${env.SONAR_PROJECT_KEY} -Dsonar.projectName=${env.SONAR_PROJECT_NAME} -Dsonar.host.url=${env.SONAR_HOST_URL} -Dsonar.login=${env.SONAR_LOGIN}"
-		        }
-		    }
-		}
+            steps {
+                script {
+                    sh "${env.scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${env.SONAR_PROJECT_KEY} -Dsonar.projectName=${env.SONAR_PROJECT_NAME} -Dsonar.host.url=${env.SONAR_HOST_URL} -Dsonar.login=${env.SONAR_LOGIN}"
+                }
+            }
+        }
     }
 }
