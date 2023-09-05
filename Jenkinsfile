@@ -3,10 +3,12 @@ pipeline {
     stages{
 	    stage('Build with Ant') {
             steps {
-                def antHome = tool name: 'Ant', type: 'hudson.tasks.Ant'
-                sh "${antHome}/bin/ant -f C:/Users/Clarr/git/Simple-Java-Calculator/build.xml"
+                script {
+                    env.ANT_HOME = "C:\\apache-ant-1.9.16\\bin"
+                    sh "${env.ANT_HOME}\\ant -f C:\\Users\\Clarr\\git\\Simple-Java-Calculator\\build.xml"
+                }
             }
-	    }
+        }
         stage('Build docker image'){
             steps{
                 script{
