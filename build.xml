@@ -69,7 +69,6 @@
   	    <exec executable="sonar-scanner">
   	        <arg value="-Dsonar.projectKey=Simple-Java-Calculator" />
   	        <arg value="-Dsonar.projectName=Simple-Java-Calculator" />
-  	        <!-- Add any other SonarQube analysis properties you need here -->
   	    </exec>
   	</target>
 </project>
