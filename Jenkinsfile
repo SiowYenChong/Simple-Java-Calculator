@@ -47,20 +47,6 @@ pipeline {
                     sh "${env.scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey=${env.SONAR_PROJECT_KEY} -Dsonar.projectName=${env.SONAR_PROJECT_NAME} -Dsonar.host.url=${env.SONAR_HOST_URL} -Dsonar.login=${env.SONAR_LOGIN}"
                 }
             }
-        }
-        stage('Notify GitHub Collaborators') {
-		    steps {
-		        script {
-		            def status = currentBuild.resultIsWorseThan(hudson.model.Result.SUCCESS) ? 'failed' : 'succeeded'
-		            def notificationMessage = "Build ${status}: ${env.BUILD_URL}"
-		            def githubRepoURL = 'https://api.github.com/repos/SiowYenChong/Simple-Java-Calculator/notifications'
-		
-		            // Use curl to send a notification to GitHub
-		            sh "curl -X POST -d '{\"subject\":\"Jenkins Build Status\", \"type\":\"Note\", \"content\":\"${notificationMessage}\"}' -H 'Authorization: token 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' ${githubRepoURL}"
-		        }
-		    }
-		}
-
-        
+        }    
     }
 }
