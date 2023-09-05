@@ -1,0 +1,6 @@
+projectKey=Simple-Java-Calculator
+serverUrl=http://localhost:9000
+serverVersion=10.1.0.73491
+dashboardUrl=http://localhost:9000/dashboard?id=Simple-Java-Calculator
+ceTaskId=AYplKFz7rFqbUyKYuysD
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYplKFz7rFqbUyKYuysD
