@@ -3,6 +3,7 @@ pipeline {
     environment {
         ANT_HOME = "C:/apache-ant-1.9.16"
         BUILD_XML_PATH = "C:/Users/Clarr/git/Simple-Java-Calculator/build.xml"
+    	mvn = "C:/apache-maven-3.9.4"
     }
     stages{
 	    stage('Build with Ant') {
@@ -27,6 +28,11 @@ pipeline {
                 }
             }
         }
+        stage('SonarQube Analysis') {
+		    withSonarQubeEnv() {
+		      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=Simple-Java-Calculator -Dsonar.projectName='Simple-Java-Calculator'"
+		    }
+		}
     }
 }
 
