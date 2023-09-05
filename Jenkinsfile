@@ -13,7 +13,7 @@ pipeline {
 	    stage('Run Unit Tests') {
             steps {
                 // Run JUnit tests
-                dir("C:/Users/Clarr/git/Simple-Java-Calculator/src/simplejavacalculatorTest") {
+                dir("C:/Users/Clarr/git/Simple-Java-Calculator/build.xml") {
                     sh "${env.ANT_HOME}/bin/ant test"
                 }
             }
