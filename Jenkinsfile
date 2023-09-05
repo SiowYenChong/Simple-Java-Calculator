@@ -50,4 +50,9 @@ pipeline {
         }
         //test Jenkins notification    
     }
+    post {
+        always {
+            emailext body: 'Build Results EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Build Results'
+        }
+    }
 }
