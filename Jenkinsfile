@@ -1,11 +1,13 @@
 pipeline {
     agent any
+    environment {
+        ANT_HOME = "C:/apache-ant-1.9.16"
+        BUILD_XML_PATH = "C:/Users/Clarr/git/Simple-Java-Calculator/build.xml"
+    }
     stages{
 	    stage('Build with Ant') {
             steps {
-                    env.ANT_HOME = "C:/apache-ant-1.9.16"
-                    def buildXmlPath = "C:/Users/Clarr/git/Simple-Java-Calculator/build.xml"
-                    sh "${env.ANT_HOME}/ant -f ${buildXmlPath}"
+                sh "${env.ANT_HOME}/bin/ant -f ${env.BUILD_XML_PATH}"
             }
         }
         stage('Build docker image'){
