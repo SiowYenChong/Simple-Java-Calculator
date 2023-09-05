@@ -65,4 +65,10 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
+  	<target name="sonar">
+  	    <exec executable="sonar-scanner">
+  	        <arg value="-Dsonar.projectKey=Simple-Java-Calculator" />
+  	        <arg value="-Dsonar.projectName=Simple-Java-Calculator" />
+  	    </exec>
+  	</target>
 </project>
