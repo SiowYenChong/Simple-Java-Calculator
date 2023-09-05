@@ -51,8 +51,16 @@ pipeline {
         //test Jenkins notification    
     }
     post {
-        always {
-            emailext body: 'Build Results EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Build Results'
+    always {
+        script {
+            def buildStatus = currentBuild.resultIsBetterOrEqualTo('SUCCESS') ? 'successful' : 'failed'
+            def emailBody = "Build ${buildStatus}: ${env.BUILD_URL}"
+            emailext body: emailBody,
+                     subject: "Build Results (${buildStatus})",
+                     to: 'ayj123@1utar.my, anoshaabubakr@1utar.my, chuyan.se@1utar.my, Clairechong998@1utar.my'
         }
     }
+}
+
+
 }
