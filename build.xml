@@ -71,4 +71,10 @@
   	        <arg value="-Dsonar.projectName=Simple-Java-Calculator" />
   	    </exec>
   	</target>
+  	<target name="jar">
+  	        <jar destfile="bin/SimpleJavaCalculator.jar" basedir="bin">
+  	            <!-- Include all .class files -->
+  	            <include name="**/*.class"/>
+  	        </jar>
+  	    </target>
 </project>

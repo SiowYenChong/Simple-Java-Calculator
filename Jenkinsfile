@@ -10,6 +10,14 @@ pipeline {
         scannerHome = 'C:/sonar-scanner-5.0.1.3006-windows'
     }
     stages {
+	    stage('Run Unit Tests') {
+            steps {
+                // Run JUnit tests
+                dir("C:/Users/Clarr/git/Simple-Java-Calculator/src/simplejavacalculatorTest") {
+                    sh "${env.ANT_HOME}/bin/ant test"
+                }
+            }
+        }
         stage('Build with Ant') {
             steps {
                 // Execute the Ant build using the specified build.xml
@@ -33,7 +41,7 @@ pipeline {
                 }
             }
         }
-        stage('SonarQube Analysis') {
+        stage('Generate SonarQube Analysis') {
             steps {
                 script {
                     sh "${env.scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey=${env.SONAR_PROJECT_KEY} -Dsonar.projectName=${env.SONAR_PROJECT_NAME} -Dsonar.host.url=${env.SONAR_HOST_URL} -Dsonar.login=${env.SONAR_LOGIN}"
