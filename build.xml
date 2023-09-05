@@ -76,5 +76,16 @@
   	            <!-- Include all .class files -->
   	            <include name="**/*.class"/>
   	        </jar>
+  	</target>
+  	<target name="test">
+  	        <mkdir dir="build/test-reports"/>
+  	        <junit printsummary="yes" haltonfailure="no">
+  	            <classpath refid="JUnit 5.libraryclasspath"/>
+  	            <batchtest todir="build/test-reports">
+  	                <fileset dir="C:/Users/Clarr/git/Simple-Java-Calculator/src/simplejavacalculatorTest">
+  	                    <include name="**/*CalculatorTest.java"/>
+  	                </fileset>
+  	            </batchtest>
+  	        </junit>
   	    </target>
 </project>
