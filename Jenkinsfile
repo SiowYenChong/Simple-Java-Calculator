@@ -31,7 +31,7 @@ pipeline {
         stage('SonarQube Analysis') {
 		    steps {
 		        script {
-		            withSonarQubeEnv('SonarQube1') {
+		            withSonarQubeEnv('SonarQube') {
 		                sh """
 		                ${ANT_HOME}/bin/ant sonar \\
 		                -Dsonar.projectKey=Simple-Java-Calculator \\
