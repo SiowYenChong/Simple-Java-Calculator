@@ -31,7 +31,7 @@ pipeline {
         stage('SonarQube Analysis') {
 		    steps {
 		        script {
-		            withSonarQubeEnv('Simple-Java-Calculator') {
+		            withSonarQubeEnv('SonarQubeScanner') {
 		                sh "${ANT_HOME}/bin/ant sonar -Dsonar.projectKey=Simple-Java-Calculator -Dsonar.projectName='Simple-Java-Calculator' -Dsonar.login=squ_025b7877e89fb15e39f368c2b9eaad3bb9722efa"
 		            }
 		        }
