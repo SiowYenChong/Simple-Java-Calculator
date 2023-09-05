@@ -3,6 +3,10 @@ pipeline {
     environment {
         ANT_HOME = "C:/apache-ant-1.9.16"
         BUILD_XML_PATH = "C:/Users/Clarr/git/Simple-Java-Calculator/build.xml"
+    	SONAR_PROJECT_KEY = 'Simple-Java-Calculator'
+        SONAR_PROJECT_NAME = 'Simple-Java-Calculator'
+        SONAR_HOST_URL = 'http://localhost:9000/'
+        SONAR_LOGIN = 'squ_025b7877e89fb15e39f368c2b9eaad3bb9722efa'
     }
     stages {
         stage('Build with Ant') {
@@ -29,19 +33,11 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
-		    steps {
-		        script {
-		            withSonarQubeEnv('SonarQube1') {
-		                sh """
-		                ${ANT_HOME}/bin/ant sonar \\
-		                -Dsonar.projectKey=Simple-Java-Calculator \\
-		                -Dsonar.projectName='Simple-Java-Calculator' \\
-		                -Dsonar.host.url=http://localhost:9000/ \\
-		                -Dsonar.login=squ_025b7877e89fb15e39f368c2b9eaad3bb9722efa
-		                """
-		            }
-		        }
-		    }
-		}
+            steps {
+                script {
+                    sh "sonar-scanner -Dsonar.projectKey=${SONAR_PROJECT_KEY} -Dsonar.projectName=${SONAR_PROJECT_NAME} -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.login=${SONAR_LOGIN}"
+                }
+            }
+        }
     }
 }
